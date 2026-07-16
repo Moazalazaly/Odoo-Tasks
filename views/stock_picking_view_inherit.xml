@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id = "inventory_operation_form_view_inherit" model = "ir.ui.view">
+        <field name = "name">inventory_operation_form_view_inherit</field>
+        <field name = "model">stock.picking</field>
+        <field name = "inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">state not in ('assigned', 'confirmed', 'draft', 'waiting','to_approve')</attribute>
+            </xpath>
+            
+
+            <xpath expr="//form/sheet" position="before">
+                <field name="can_confirm" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute name="invisible">state != 'draft' and (state != 'to_approve' or not can_confirm)</attribute>
+            </xpath>
+
+             <xpath expr="//button[@name='320']" position="attributes">
+                <attribute name="invisible">state != 'done' or not can_confirm</attribute>
+            </xpath>
+
+
+        </field>
+    </record>
+</odoo>

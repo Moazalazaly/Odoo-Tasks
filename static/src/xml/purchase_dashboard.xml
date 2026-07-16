@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="purchase_po_counter.PurchaseDashboardExtension"
+       t-inherit="purchase.PurchaseDashboard"
+       t-inherit-mode="extension">
+
+        <!-- Insert a new full-width row right after the "Lead Time to Purchase" /
+             "RFQs Sent Last 7 Days" row, inside the same right-hand column -->
+        <xpath expr="//div[hasclass('d-flex','flex-column','justify-content-between','gap-2','h-100')]/div[hasclass('grid','gap-2','h-100')][last()]"
+               position="after">
+            <div class="grid gap-2 h-100">
+                <div class="g-col-12 g-col-md-12 grid gap-1 gap-md-4">
+                    <div class="g-col-12 g-col-sm-4 g-col-lg-6 d-flex align-items-center justify-content-center text-center justify-content-md-end text-md-end mt-4 mt-sm-0 text-break">
+                        Purchase Orders
+                    </div>
+                    <div class="g-col-12 g-col-sm-8 g-col-lg-5 d-flex align-items-center justify-content-center py-2 bg-100">
+                        <span><t t-out="purchaseData['all_purchase_orders']"/></span>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+    </t>
+</templates>
